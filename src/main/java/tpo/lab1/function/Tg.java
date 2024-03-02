@@ -39,6 +39,6 @@ public class Tg{
         }
         return sin / cos;*/
 
-        return sin.divide(cos,16, RoundingMode.HALF_UP).doubleValue();
+        return sin.divide(cos,1000, RoundingMode.HALF_UP).doubleValue();
     }
 }
