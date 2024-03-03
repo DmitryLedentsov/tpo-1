@@ -7,9 +7,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -64,6 +66,7 @@ public class TextTest {
 
     }
 
+    //может ли Триллиан остановить героя и спасти корабль
     @ParameterizedTest
     @CsvSource(value = {
         "10,20",
@@ -76,6 +79,8 @@ public class TextTest {
         assertEquals(trillian.block(mainHero), captainStrength<assistantStrength);
     }
 
+    
+
     @Nested
     @TestInstance(TestInstance.Lifecycle.PER_CLASS)
     @TestMethodOrder(OrderAnnotation.class) 
@@ -83,7 +88,8 @@ public class TextTest {
         List<Person> test;
         @BeforeEach
         void init(){
-            test = new LinkedList<>();
+            test = ship.getCrew().stream()
+                .collect(Collectors.toList());
         }
 
 

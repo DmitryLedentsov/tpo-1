@@ -3,6 +3,7 @@ package tpo.lab1.text;
 
 public class Captain extends Person{
     public Captain(String name){
+        setName(name);
         setGender(Gender.MALE);
         setStrength(20);
     }
