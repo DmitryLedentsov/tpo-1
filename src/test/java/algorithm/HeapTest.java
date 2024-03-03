@@ -2,29 +2,42 @@ package algorithm;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import tpo.lab1.algorithm.RadixSort;
-import tpo.lab1.algorithm.SortAlgorithm;
+
+import tpo.lab1.algorithm.LeftListHeap;
+
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class RadixSortTest {
-    SortAlgorithm radixSort;
+import java.util.LinkedList;
+import java.util.List;
 
+public class HeapTest {
+    LeftListHeap<Integer> heap;
+    List<Integer> test;
     @BeforeEach
     void init() {
-        radixSort = new RadixSort();
+        heap = new LeftListHeap<>();
+        test = new LinkedList<>();
     }
 
-    @Test
-    public void checkBasicValues() {
-        int[] input = {3, 2, 4, 1, 7, 6, 5};
-        int[] expected = {1, 2, 3, 4, 5, 6, 7};
-        radixSort.sort(input);
-        assertArrayEquals(expected, input);
-    }
 
+    void fillWithValues(){
+        heap.insert(1);
+        heap.insert(2);
+        heap.insert(3);
+        test.add(1);
+        test.add(2);
+        test.add(3);
+    }
     @Test
+    public void checkInsert() {
+        fillWithValues();
+        assertIterableEquals(heap.getList(),test);
+    }
+    
+    /*@Test
     public void checkSortedValues() {
         int[] input = {1, 2, 3, 4, 5, 6, 7};
         int[] expected = {1, 2, 3, 4, 5, 6, 7};
@@ -66,5 +79,5 @@ public class RadixSortTest {
         int[] expected = {6, 15, 104, 1003, 10002, 100001, 1000000};
         radixSort.sort(input);
         assertArrayEquals(expected, input);
-    }
+    }*/
 }
