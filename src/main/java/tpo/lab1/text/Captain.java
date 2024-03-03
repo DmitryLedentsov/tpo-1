@@ -7,11 +7,11 @@ public class Captain extends Person{
         setStrength(20);
     }
     public void drumWithFingers(Object o){
-
+        destroy(o);
     }
 
     public void destroy(Object o){
-        
+        o.destruct();
     }
 
 

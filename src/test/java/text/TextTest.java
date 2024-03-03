@@ -2,6 +2,7 @@ package text;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
@@ -21,6 +22,7 @@ import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.EnumSource;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -36,16 +38,30 @@ public class TextTest {
     Ship ship;
     Captain mainHero;
     Assistant trillian;
-
+    Panel panel;
     @BeforeEach
     void init(){
         ship = new Ship("корабль");
-        Panel panel = new Panel();
+        panel = new Panel();
         ship.setControlPanel(panel);
         mainHero = new Captain("главный герой");
         trillian = new Assistant("Триллиан");
+        ship.addCrewMember(mainHero);
+        ship.addCrewMember(trillian);
         mainHero.getQuolities().addAll(Arrays.asList(Quolity.ARROGANCE, Quolity.BRAVADO, Quolity.IMPETUOSITY));
         trillian.getQuolities().add(Quolity.WISE);
+    }
+
+
+    //проверяем если главный герой барабанит пальцами-->панель ломается-> корабль взрывается -> все умирают
+    @Test
+    void testCompleteActionsInSleep() {
+        mainHero.drumWithFingers(panel);
+        assertTrue(ship.isDestroyed());
+        assertTrue(panel.isDestroyed());
+        assertTrue(mainHero.isDestroyed());
+        assertTrue(trillian.isDestroyed());
+
     }
 
     @ParameterizedTest

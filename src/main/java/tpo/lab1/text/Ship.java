@@ -21,6 +21,17 @@ public class Ship extends Object{
         return crew.contains(p);
     }
 
-    
+    public void setControlPanel(Panel p){
+        p.setShip(this);
+    }
+
+    @Override
+    public void destruct(){
+        crew.forEach((p)->p.destruct());
+        super.destruct();
+    }
+
+
+
     
 }
