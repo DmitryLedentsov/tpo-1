@@ -20,24 +20,13 @@ public class Tg{
                 nextSin.doubleValue()!=0 &&
                 i<MAX_ITERATIONS
             ) {
-            //nextCos = nextCos.negate().multiply(new BigDecimal(x).pow(2).divide(new BigDecimal(2 * i * (2 * i - 1)),1000 , RoundingMode.HALF_UP));
             nextCos = nextCos.multiply(new BigDecimal(x).pow(2).divide(new BigDecimal(2 * i * (2 * i - 1)), 1000 , RoundingMode.HALF_UP)).negate();
             nextSin = nextSin.multiply(new BigDecimal(x).pow(2).divide(new BigDecimal(2 * i * (2 * i + 1)), 1000 , RoundingMode.HALF_UP)).negate();
-            //nextCos.multiply(new BigDecimal(x).pow(2).divide(new BigDecimal(2 * i * (2 * i - 1))).negate());
-            //nextSin.multiply(new BigDecimal(x).pow(2).divide(new BigDecimal(2 * i * (2 * i + 1))).negate());
+
             cos = cos.add(nextCos);
             sin = sin.add(nextSin);
             i++;
         }
-        //nextCos.multiply(new BigDecimal(x).pow(2).divide(new BigDecimal(2 * i * (2 * i - 1))).negate());
-        //nextSin.multiply(new BigDecimal(x).pow(2).divide(new BigDecimal(2 * i * (2 * i + 1))).negate());
-       /*  while ((nextCos *= -x * x / (2 * i * (2 * i - 1))) != 0
-                && (nextSin *= -x * x / (2 * i * (2 * i + 1))) != 0) {
-            cos += nextCos;
-            sin += nextSin;
-            i++;
-        }
-        return sin / cos;*/
 
         return sin.divide(cos,1000, RoundingMode.HALF_UP).doubleValue();
     }
