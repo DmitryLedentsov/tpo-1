@@ -10,6 +10,9 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -20,6 +23,7 @@ public class HeapTest {
     void init() {
         heap = new LeftListHeap<>();
         test = new LinkedList<>();
+        fillWithValues();
     }
 
 
@@ -27,57 +31,43 @@ public class HeapTest {
         heap.insert(1);
         heap.insert(2);
         heap.insert(3);
+        heap.insert(5);
+        heap.insert(4);
         test.add(1);
         test.add(2);
         test.add(3);
-    }
-    @Test
-    public void checkInsert() {
-        fillWithValues();
-        assertIterableEquals(heap.getList(),test);
+        test.add(5);
+        test.add(4);
     }
     
-    /*@Test
-    public void checkSortedValues() {
-        int[] input = {1, 2, 3, 4, 5, 6, 7};
-        int[] expected = {1, 2, 3, 4, 5, 6, 7};
-        radixSort.sort(input);
-        assertArrayEquals(expected, input);
+    
+    void assertCollectionsEquals(){
+        Collections.sort(test);
+        List<Integer> result = heap.getList();
+        Collections.sort(result);
+        assertIterableEquals(result,test);
     }
 
     @Test
-    public void checkReversedValues() {
-        int[] input = {7, 6, 5, 4, 3, 2, 1};
-        int[] expected = {1, 2, 3, 4, 5, 6, 7};
-        radixSort.sort(input);
-        assertArrayEquals(expected, input);
+    void checkInsert() {
+        fillWithValues();
+        assertCollectionsEquals();
     }
 
     @Test
-    public void checkEqualsValues() {
-        int[] input = {0, 0, 0, 0, 0, 0, 0};
-        int[] expected = {0, 0, 0, 0, 0, 0, 0};
-        radixSort.sort(input);
-        assertArrayEquals(expected, input);
+    void removeSmallest() {
+        test.remove(Collections.min(test));
+        heap.deleteMin();
+        assertCollectionsEquals();
     }
 
     @Test
-    void checkEmpty() {
-        int[] input = {};
-        radixSort.sort(input);
-        assertArrayEquals(new int[]{}, input);
+    void clear(){
+
+        test.clear();
+        heap.makeEmpty();
+        assertCollectionsEquals();
     }
 
-    @Test
-    void checkNull() {
-        assertThrows(NullPointerException.class, () -> radixSort.sort(null));
-    }
-
-    @Test
-    void checkDifferentRanksValues() {
-        int[] input = {100001, 10002, 1003, 104, 6, 1000000, 15};
-        int[] expected = {6, 15, 104, 1003, 10002, 100001, 1000000};
-        radixSort.sort(input);
-        assertArrayEquals(expected, input);
-    }*/
+    
 }

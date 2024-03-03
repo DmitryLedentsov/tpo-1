@@ -100,6 +100,7 @@ public class LeftListHeap <E extends Comparable<? super E>> {
     }
 
     private void consumer(Node<E> node, List<E> list){
+        if(node==null) return;
         list.add(node.element);
         if(node.left!=null){
            consumer(node.left, list);
