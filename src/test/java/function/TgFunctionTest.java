@@ -16,13 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TgFunctionTest {
-   /* private Calculable sec;
 
-    @BeforeEach
-    void init() {
-        sec = new Sec();
-    }
-*/
     @ParameterizedTest(name = "{index}. Test tg({0}) on null ")
     @ValueSource(doubles = {
             (PI / 2), (3 * PI) / 2, (PI / 2) + 2 * PI, ((3 * PI) / 2) + (2 * PI),
